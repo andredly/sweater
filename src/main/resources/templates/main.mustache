@@ -2,9 +2,41 @@
 <html>
 <head>
     <title>Getting Started: Serving Web Content</title>
-    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
 </head>
 <body>
-<div>{{some}}</div>
+<div>
+    <form class="form-signin" action="/logout" method="post">
+        <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+        <input class="btn btn-large btn-primary" type="submit" value="Sign Out"/>
+
+    </form>
+</div>
+<div>
+<form method="post" class="form-signin">
+    <input class="input-block-level" type="text" name="text" placeholder="Input message">
+    <input class="input-block-level" type="text" name="tag" placeholder="Input tag">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+    <button class="btn btn-large btn-primary" type="submit">Send</button>
+</form>
+</div>
+<div>
+<form method="post" action="filter" class="form-signin">
+    <input class="input-block-level" type="text" name="tag" placeholder="Input filter">
+    <input type="hidden" name="_csrf" value="{{_csrf.token}}"/>
+    <button class="btn btn-large btn-primary" type="submit">Filter</button>
+</form>
+</div>
+<div>List messages</div>
+{{#messages}}
+    <div>
+        <b>{{id}}</b>
+        <span>{{text}}</span>
+        <i>{{tag}}</i>
+    </div>
+{{/messages}}
+<script src="http://code.jquery.com/jquery-latest.js"></script>
+<script src="js/bootstrap.min.js"></script>
 </body>
 </html>
